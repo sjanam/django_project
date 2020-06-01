@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<div class="jumbotron">
+    <h1> Welcome to the Registration page! </h1>
+
+    {% if registered %}
+      <h1> Thank You for registering! </h1>
+      <a href="{% url 'admin:index' %}"> LINK to ADMIN </a>
+    {% else %}
+      <h1> Register Here! </h1>
+      <h3> Fill out the form: </h3>
+
+      <form  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <input type="submit" name="" value="Register">
+      </form>
+
+    {% endif %}
+</div>
+{% endblock %}
